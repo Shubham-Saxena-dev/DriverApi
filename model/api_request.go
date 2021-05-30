@@ -5,25 +5,19 @@ import "github.com/jinzhu/gorm"
 type Driver struct {
 	gorm.Model
 
-	id      int64
-	name    string
-	address string
-	phone  	int64
-	car     []Car
+	Name    string `json:"name"`
+	Address string `json:"address"`
+	Phone   int64  `json:"phone"`
+	Car     []Car  `gorm:"embedded"`
 }
 
 type Car struct {
-	gorm.Model
-
-	model        string
-	color        string
-	licensePlate string
-	company      Company
+	Color        string  `json:"color"`
+	LicensePlate string  `json:"licensePlate"`
+	Company      Company `gorm:"embedded"`
 }
 
 type Company struct {
-	gorm.Model
-
-	name     string
-	carModel string
+	Name     string `json:"name"`
+	CarModel string `json:"carModel"`
 }
