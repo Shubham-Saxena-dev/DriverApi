@@ -1,16 +1,17 @@
 package service
 
 import (
+	"ProductApis/model"
 	"github.com/jinzhu/gorm"
 )
 
 type RouteService interface {
-	GetDriverDetails()
-	CreateDriver()
+	GetDriverDetails(id int)
+	CreateDriver(driver model.Driver)
 	GetAllDriverDetails()
-	UpdateDriver()
-	DeleteDriver()
-	AddNewCar()
+	UpdateDriver(id int)
+	DeleteDriver(id int)
+	AddNewCar(car model.Car)
 }
 
 type routeService struct {
@@ -21,26 +22,27 @@ func NewRouteService(repo *gorm.DB) RouteService {
 	return &routeService{repo: repo}
 }
 
-func (r routeService) GetDriverDetails() {
-	panic("implement me")
+func (r routeService) GetDriverDetails(id int) {
+	var driver model.Driver
+	r.repo.First(&driver, id)
+
+}
+func (r routeService) CreateDriver(driver model.Driver) {
+	r.repo.Create(&driver)
 }
 
 func (r routeService) GetAllDriverDetails() {
 	panic("implement me")
 }
 
-func (r routeService) CreateDriver() {
+func (r routeService) UpdateDriver(id int) {
 	panic("implement me")
 }
 
-func (r routeService) UpdateDriver() {
+func (r routeService) DeleteDriver(id int) {
 	panic("implement me")
 }
 
-func (r routeService) DeleteDriver() {
-	panic("implement me")
-}
-
-func (r routeService) AddNewCar() {
+func (r routeService) AddNewCar(car model.Car) {
 	panic("implement me")
 }
